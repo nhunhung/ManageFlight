@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', arial, sans-serif;
+}
+
+.page-heading {
+    background-repeat: no-repeat;
+	height: 185px;
+    width: 100%;
+	background-position: center center;
+	text-align: center;
+	position: relative;
+	opacity: 0.5;
+}
+
+.page-heading .logo {
+	padding: 60px 0px;
+	text-align: left;
+}
+
+.left-side {
+	text-align: left;
+	background-color: rgba(255, 101, 102, 0.5);
+	height: 100%;
+	margin-left: -100vh;
+	padding-left: 100vh;
+}

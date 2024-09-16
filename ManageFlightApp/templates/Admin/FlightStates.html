@@ -1,0 +1,69 @@
+{% extends 'admin/base.html' %}
+
+{% block body %}
+
+<div class="row">
+                        <div class="col-md-6">
+                            <table class="table">
+                                <tr>
+                                    <td>Tên tuyến bay</td>
+                                     <td>Số lượt bay </td>
+                                </tr>
+                                {% for c in FlightStates %}
+                                <tr>
+                                    <td> {{ c[0] }}</td>
+                                    <td> {{ c[1] }} </td>
+                                </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <div>
+                                <canvas id="myChart"></canvas>
+                            </div>
+                        </div>
+            </div>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script>
+                  window.onload = function(){
+                             const ctx = document.getElementById('myChart').getContext('2d')
+                             let data = []
+                             let labels = []
+                             let r, g, b
+                             let colors = []
+                             let borderColors = []
+                             {% for c in FlightStates %}
+                                        labels.push('{{ c[0] }}')
+                                        data.push({{ c[1] }})
+                                         r = Math.random()*255
+                                         g = Math.random()*255
+                                         b = Math.random()*255
+                                         colors.push(`rgba(${r}, ${g}, ${b}, 0.2)`)
+                                         borderColors.push(`rgba(${r}, ${g}, ${b}, 0.2)`)
+                             {% endfor %}
+                             new Chart(ctx, {
+                                            type: 'bar',
+                                            data: {
+                                                      labels: labels,
+                                                      datasets: [{
+                                                        label: '# Tổng lượt bay',
+                                                        data: data,
+                                                        borderWidth: 1,
+                                                        backgroundColor: colors,
+                                                        borderColor:  borderColors
+                                                      }]
+                                            },
+                                            options:{
+
+                                                      scales: {
+                                                        y: {
+                                                          beginAtZero: true
+                                                        }
+                                                      }
+
+                                            }
+                             });
+                      }
+            </script>
+
+{% endblock %}

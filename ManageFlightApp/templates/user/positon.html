@@ -1,0 +1,1820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SEAT</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/user/position.css') }}">
+    <script src="{{ url_for('static', filename='js/user/position.js') }}"></script>
+</head>
+<body style="background-color: #7BCAFC;">
+<header style="margin: -50px">
+    {% include 'user/layout/header.html' %}
+</header>
+
+
+<!--{% if not current_user.is_authenticated %}-->
+
+<!--<div class="container-btn row">-->
+<!--    {% for p in pos_type %}-->
+<!--    <div class="btn btn-warning row" style="margin-top: 10px; border-radius: 20px" onclick="showAdd()"-->
+<!--    value="{{ p.id }}" id="type">{{ p.type_of_position_name }}</div>-->
+<!--    {% endfor %}-->
+<!--</div>-->
+
+<div style="padding:50px"></div>
+<div class="row" id="busi-seat">
+    <div class="seat-info" style="">
+        <div class="row">
+            <div class="seat">
+                <i class="fa fa-square seat-icon seat-icon-pip"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="info">
+                <h6 style="text-align: center; margin: 0px">TABLE</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="seat">
+                <i class="fa fa-circle seat-icon seat-icon-disable"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="info">
+                <h6 style="text-align: center; margin: 0px">GHẾ ĐÃ ĐƯỢC CHỌN</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="seat">
+                <i class="fa fa-circle seat-icon seat-icon-select"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="info">
+                <h6 style="text-align: center; margin: 0px">GHẾ ĐANG CHỌN</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="seat">
+                <i class="fa fa-circle seat-icon seat-icon-empty"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="info">
+                <h6 style="text-align: center; margin: 0px">GHẾ TRỐNG</h6>
+            </div>
+        </div>
+    </div>
+    <div class="seat-container line-1">
+        <div class="seat-row">
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">A</h3>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">B</h3>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">C</h3>
+            </div>
+            <div class="seat">
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">D</h3>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">E</h3>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">F</h3>
+            </div>
+        </div>
+        <div class="seat-row">
+            <div class="seat">
+                <i value="A1"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i class="fa fa-square seat-icon seat-icon-pip"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="C1"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">1</h3>
+            </div>
+            <div class="seat">
+                <i value="D1"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i class="fa fa-square seat-icon seat-icon-pip"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="F1"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="seat-row">
+            <div class="seat">
+                <i class="fa fa-square seat-icon seat-icon-pip"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="B2"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i class="fa fa-square seat-icon seat-icon-pip"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">2</h3>
+            </div>
+            <div class="seat">
+                <i class="fa fa-square seat-icon seat-icon-pip"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="E2"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i class="fa fa-square seat-icon seat-icon-pip"
+                   aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="seat-row">
+            <div class="seat">
+                <i value="A3"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i class="fa fa-square seat-icon seat-icon-pip"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="C3"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">3</h3>
+            </div>
+            <div class="seat">
+                <i value="D3"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i class="fa fa-square seat-icon seat-icon-pip"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="F3"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="seat-row">
+            <div class="seat">
+                <i class="fa fa-square seat-icon seat-icon-pip"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="B4"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i class="fa fa-square seat-icon seat-icon-pip"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">4</h3>
+            </div>
+            <div class="seat">
+                <i class="fa fa-square seat-icon seat-icon-pip"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="E4"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i class="fa fa-square seat-icon seat-icon-pip"
+                   aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="seat-row">
+            <div class="seat">
+                <i value="A5"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i class="fa fa-square seat-icon seat-icon-pip"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="C5"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">5</h3>
+            </div>
+            <div class="seat">
+                <i value="D5"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i class="fa fa-square seat-icon seat-icon-pip"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="F5"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" id="dex-seat">
+    <div class="seat-info" style="">
+        <div class="row">
+            <div class="seat">
+                <i class="fa fa-square seat-icon seat-icon-pip"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="info">
+                <h6 style="text-align: center; margin: 0px">TABLE</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="seat">
+                <i class="fa fa-circle seat-icon seat-icon-disable"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="info">
+                <h6 style="text-align: center; margin: 0px">GHẾ ĐÃ ĐƯỢC CHỌN</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="seat">
+                <i class="fa fa-circle seat-icon seat-icon-select"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="info">
+                <h6 style="text-align: center; margin: 0px">GHẾ ĐANG CHỌN</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="seat">
+                <i class="fa fa-circle seat-icon seat-icon-empty"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="info">
+                <h6 style="text-align: center; margin: 0px">GHẾ TRỐNG</h6>
+            </div>
+        </div>
+    </div>
+    <div class="seat-container line-1">
+        <div class="seat-row">
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">A</h3>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">|</h3>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">C</h3>
+            </div>
+            <div class="seat">
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">D</h3>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">|</h3>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">F</h3>
+            </div>
+        </div>
+        <div class="seat-row">
+            <div class="seat">
+                <i value="A1"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i class="fa fa-square seat-icon seat-icon-pip"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="C1"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">1</h3>
+            </div>
+            <div class="seat">
+                <i value="D1"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i class="fa fa-square seat-icon seat-icon-pip"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="F1"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="seat-row">
+            <div class="seat">
+                <i value="A2"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i class="fa fa-square seat-icon seat-icon-pip"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="C2"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">2</h3>
+            </div>
+            <div class="seat">
+                <i value="D2"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i class="fa fa-square seat-icon seat-icon-pip"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="F2"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="seat-row">
+            <div class="seat">
+                <i value="A3"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i class="fa fa-square seat-icon seat-icon-pip"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="C3"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">3</h3>
+            </div>
+            <div class="seat">
+                <i value="D3"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i class="fa fa-square seat-icon seat-icon-pip"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="F3"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="seat-row">
+            <div class="seat">
+                <i value="A4"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i class="fa fa-square seat-icon seat-icon-pip"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="C4"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">4</h3>
+            </div>
+            <div class="seat">
+                <i value="D4"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i class="fa fa-square seat-icon seat-icon-pip"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="F4"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="seat-row">
+            <div class="seat">
+                <i value="A5"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i class="fa fa-square seat-icon seat-icon-pip"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="C5"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">5</h3>
+            </div>
+            <div class="seat">
+                <i value="D5"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i class="fa fa-square seat-icon seat-icon-pip"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="F5"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="seat-row">
+            <div class="seat">
+                <i value="A6"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i class="fa fa-square seat-icon seat-icon-pip"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="C6"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">6</h3>
+            </div>
+            <div class="seat">
+                <i value="D6"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i class="fa fa-square seat-icon seat-icon-pip"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="F6"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="seat-row">
+            <div class="seat">
+                <i value="A7"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i class="fa fa-square seat-icon seat-icon-pip"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="C7"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">7</h3>
+            </div>
+            <div class="seat">
+                <i value="D7"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i class="fa fa-square seat-icon seat-icon-pip"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="F7"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="seat-row">
+            <div class="seat">
+                <i value="A8"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i class="fa fa-square seat-icon seat-icon-pip"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="C8"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">8</h3>
+            </div>
+            <div class="seat">
+                <i value="D8"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i class="fa fa-square seat-icon seat-icon-pip"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="F8"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="seat-row">
+            <div class="seat">
+                <i value="A9"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i class="fa fa-square seat-icon seat-icon-pip"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="C9"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">9</h3>
+            </div>
+            <div class="seat">
+                <i value="D9"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i class="fa fa-square seat-icon seat-icon-pip"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="F9"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="seat-row">
+            <div class="seat">
+
+            </div>
+            <div class="seat">
+                <i class="fa fa-square seat-icon seat-icon-pip"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="C10"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">10</h3>
+            </div>
+            <div class="seat">
+                <i value="D10"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i class="fa fa-square seat-icon seat-icon-pip"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" id="eco-seat">
+    <div class="seat-info" style="">
+        <div class="row">
+            <div class="seat">
+                <i class="fa fa-circle seat-icon seat-icon-disable"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="info">
+                <h6 style="text-align: center; margin: 0px">GHẾ ĐÃ ĐƯỢC CHỌN</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="seat">
+                <i class="fa fa-circle seat-icon seat-icon-select"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="info">
+                <h6 style="text-align: center; margin: 0px">GHẾ ĐANG CHỌN</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="seat">
+                <i class="fa fa-circle seat-icon seat-icon-empty"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="info">
+                <h6 style="text-align: center; margin: 0px">GHẾ TRỐNG</h6>
+            </div>
+        </div>
+    </div>
+    <div class="seat-container line-1">
+        <div class="seat-row">
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">A</h3>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">B</h3>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">C</h3>
+            </div>
+            <div class="seat">
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">D</h3>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">E</h3>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">F</h3>
+            </div>
+        </div>
+        <div class="seat-row">
+            <div class="seat">
+                <i value="A1"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="B1"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="C1"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">1</h3>
+            </div>
+            <div class="seat">
+                <i value="D1"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="E1"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="F1"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="seat-row">
+            <div class="seat">
+                <i value="A2"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="B2"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="C2"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">2</h3>
+            </div>
+            <div class="seat">
+                <i value="D2"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="E2"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="F2"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="seat-row">
+            <div class="seat">
+                <i value="A3"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="B3"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="C3"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">3</h3>
+            </div>
+            <div class="seat">
+                <i value="D3"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="E3"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="F3"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="seat-row">
+            <div class="seat">
+                <i value="A4"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="B4"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="C4"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">4</h3>
+            </div>
+            <div class="seat">
+                <i value="D4"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="E4"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="F4"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="seat-row">
+            <div class="seat">
+                <i value="A5"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="B5"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="C5"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">5</h3>
+            </div>
+            <div class="seat">
+                <i value="D5"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="E5"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="F5"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="seat-row">
+            <div class="seat">
+                <i value="A6"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="B6"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="C6"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">6</h3>
+            </div>
+            <div class="seat">
+                <i value="D6"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="E6"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="F6"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="seat-row">
+            <div class="seat">
+                <i value="A7"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="B7"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="C7"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">7</h3>
+            </div>
+            <div class="seat">
+                <i value="D7"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="E7"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="F7"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="seat-row">
+            <div class="seat">
+                <i value="A8"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="B8"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="C8"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">8</h3>
+            </div>
+            <div class="seat">
+                <i value="D8"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="E8"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="F8"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="seat-row">
+            <div class="seat">
+                <i value="A9"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="B9"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="C9"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">9</h3>
+            </div>
+            <div class="seat">
+                <i value="D9"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="E9"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="F9"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="seat-row">
+            <div class="seat">
+
+            </div>
+            <div class="seat">
+                <i value="B10"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="C10"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">10</h3>
+            </div>
+            <div class="seat">
+                <i value="D10"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="E10"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+
+            </div>
+        </div>
+    </div>
+    <div class="seat-container line-2">
+        <div class="seat-row">
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">A</h3>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">B</h3>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">C</h3>
+            </div>
+            <div class="seat">
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">D</h3>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">E</h3>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">F</h3>
+            </div>
+        </div>
+        <div class="seat-row">
+            <div class="seat">
+                <i value="A11"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="B11"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="C11"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">11</h3>
+            </div>
+            <div class="seat">
+                <i value="D11"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="E11"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="F11"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="seat-row">
+            <div class="seat">
+                <i value="A12"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="B12"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="C12"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">12</h3>
+            </div>
+            <div class="seat">
+                <i value="D12"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="E12"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="F12"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="seat-row">
+            <div class="seat">
+                <i value="A13"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="B13"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="C13"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">13</h3>
+            </div>
+            <div class="seat">
+                <i value="D13"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="E13"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="F13"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="seat-row">
+            <div class="seat">
+                <i value="A14"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="B14"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="C14"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">14</h3>
+            </div>
+            <div class="seat">
+                <i value="D14"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="E14"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="F14"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="seat-row">
+            <div class="seat">
+                <i value="A15"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="B15"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="C15"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">15</h3>
+            </div>
+            <div class="seat">
+                <i value="D15"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="E15"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="F15"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="seat-row">
+            <div class="seat">
+                <i value="A16"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="B16"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="C16"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">16</h3>
+            </div>
+            <div class="seat">
+                <i value="D16"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="E16"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="F16"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="seat-row">
+            <div class="seat">
+                <i value="A17"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="B17"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="C17"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">17</h3>
+            </div>
+            <div class="seat">
+                <i value="D17"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="E17"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="F17"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="seat-row">
+            <div class="seat">
+                <i value="A18"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="B18"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="C18"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">18</h3>
+            </div>
+            <div class="seat">
+                <i value="D18"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="E18"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="F18"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="seat-row">
+            <div class="seat">
+                <i value="A19"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="B19"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="C19"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">19</h3>
+            </div>
+            <div class="seat">
+                <i value="D19"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="E19"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="F19"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="seat-row">
+            <div class="seat">
+
+            </div>
+            <div class="seat">
+                <i value="B20"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="C20"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">20</h3>
+            </div>
+            <div class="seat">
+                <i value="D20"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="E20"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+
+            </div>
+        </div>
+    </div>
+    <div class="seat-container line-3">
+        <div class="seat-row">
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">A</h3>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">B</h3>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">C</h3>
+            </div>
+            <div class="seat">
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">D</h3>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">E</h3>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">F</h3>
+            </div>
+        </div>
+        <div class="seat-row">
+            <div class="seat">
+                <i value="A21"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="B21"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="C21"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">21</h3>
+            </div>
+            <div class="seat">
+                <i value="D21"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="E21"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="F21"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="seat-row">
+            <div class="seat">
+                <i value="A22"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="B22"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="C22"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">22</h3>
+            </div>
+            <div class="seat">
+                <i value="D22"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="E22"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="F22"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="seat-row">
+            <div class="seat">
+                <i value="A23"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="B23"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="C23"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">23</h3>
+            </div>
+            <div class="seat">
+                <i value="D23"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="E23"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="F23"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="seat-row">
+            <div class="seat">
+                <i value="A24"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="B24"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="C24"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">24</h3>
+            </div>
+            <div class="seat">
+                <i value="D24"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="E24"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="F24"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="seat-row">
+            <div class="seat">
+                <i value="A25"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="B25"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="C25"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">25</h3>
+            </div>
+            <div class="seat">
+                <i value="D25"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="E25"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="F25"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="seat-row">
+            <div class="seat">
+                <i value="A26"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="B26"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="C26"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">26</h3>
+            </div>
+            <div class="seat">
+                <i value="D26"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="E26"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="F26"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="seat-row">
+            <div class="seat">
+                <i value="A27"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="B27"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="C27"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">27</h3>
+            </div>
+            <div class="seat">
+                <i value="D27"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="E27"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="F27"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="seat-row">
+            <div class="seat">
+                <i value="A28"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="B28"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="C28"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">28</h3>
+            </div>
+            <div class="seat">
+                <i value="D28"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="E28"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="F28"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="seat-row">
+            <div class="seat">
+                <i value="A29"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="B29"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="C29"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">29</h3>
+            </div>
+            <div class="seat">
+                <i value="D29"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="E29"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="F29"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="seat-row">
+            <div class="seat">
+
+            </div>
+            <div class="seat">
+                <i value="B30"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="C30"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px">30</h3>
+            </div>
+            <div class="seat">
+                <i value="D30"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+                <i value="E30"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="seat">
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" style="padding-top: 20px" id="info-pick">
+    <div class="seat-info" style="">
+        <div class="row">
+            <div class="seat">
+                <i class="fa fa-ticket seat-icon seat-icon-select"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="info">
+                <h6 style="text-align: center; margin: 0px">CHƯA CHỌN GHẾ</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="seat">
+                <h6 style="text-align: center; margin: 0px">TOTAL: </h6>
+            </div>
+            <div class="info">
+                <h6 style="text-align: center; margin: 0px">0đ</h6>
+            </div>
+        </div>
+        <div class="row">
+            <fieldset>
+                <button class="btn-continue" type="submit" class="btn">CONTINUE
+                </button>
+            </fieldset>
+        </div>
+    </div>
+</div>
+</div>
+<!--{% else %}-->
+<h2>Vui lòng đăng nhập để chọn chỗ ngồi</h2>
+<!--{% endif %}-->
+</body>
+</html>

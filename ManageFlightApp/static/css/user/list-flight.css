@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
+*, *::after {
+  box-sizing: border-box;
+}
+
+body {
+	font-family: 'Muli', sans-serif;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	min-height: 100vh;
+	margin: 0;
+    spacing: 0px
+}
+
+.list {
+	background-color: #fff;
+	border-radius: 10px;
+	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+	display: flex;
+	width: 740px;
+	margin: 20px;
+	overflow: hidden;
+	width: 700px;
+}
+
+.list h6{
+	opacity: 0.6;
+	margin: 0;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+
+.list h2 {
+	letter-spacing: 1px;
+	margin: 10px 0;
+}
+
+.list-preview {
+	background-color: #0579C3;
+	color: #fff;
+	max-width: 250px;
+	padding: 30px;
+    position: relative;
+    width: 100%;
+}
+}
+
+.list-preview a {
+	color: #fff;
+	display: inline-block;
+	font-size: 12px;
+	opacity: 0.6;
+	margin-top: 30px;
+	text-decoration: none;
+}
+
+.list-info {
+	padding: 30px;
+	position: relative;
+	width: 100%;
+	text-align: right;
+}
+
+.info-container {
+	position: absolute;
+	top: 30px;
+	right: 30px;
+	width: 150px;
+}
+
+.info img{
+	border-radius: 3px;
+	height: 40px;
+	width: 150px;
+	margin-bottom: 5px;
+}
+
+.butn {
+	border: 0;
+	border-radius: 70px;
+	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+	color: #fff;
+	font-size: 16px;
+	padding: 12px 25px;
+	position: absolute;
+	bottom: 30px;
+	right: 30px;
+	letter-spacing: 1px;
+}
+
+.list-preview .cities{
+  padding: 10px;
+  height: 77px;
+  width: 200px;
+  display: block;
+}
+
+.list-preview .top-list{
+  padding: 10px;
+}
+/*
+.list-preview .cities .city{
+   float: left;
+}
+.list-preview .cities .city:nth-child(2){
+   float: right;
+}
+.list-preview .cities .airplane {
+  position: absolute;
+  width: 30px;
+  height: 25px;
+  top: 141px;
+  left: 50%;
+*/
+/*
+}
+*/
+
+.list-preview .cities {
+  position: relative;
+}
+.list-preview .cities::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.list-preview .cities .city {
+  padding: 0px;
+  float: left;
+}
+.list-preview .cities .city:nth-child(2) {
+  float: right;
+  text-align: right;
+}
+.list-preview .cities .city strong {
+  font-size: 40px;
+  font-weight: 300;
+  line-height: 1;
+}
+.list-preview .cities .city small {
+  margin-bottom: 0px;
+  margin-left: 0px;
+}
+.list-preview .cities .airplane {
+  position: absolute;
+  bottom: 5px;
+  left: 78px;
+  width: 30px;
+  height: 25px;
+}
+
+.list-info .times {
+  width: 50%;
+  padding: 0px;
+}
+.list-info .times:: after{
+  content: "";
+  display: table;
+  clear: both;
+}
+.list-info .times strong {
+  transform: scale(0.9);
+  transform-origin: left bottom;
+}
+
+.list-info .box {
+  padding: 10px 20px 10px 5px;
+  width: 47%;
+  float: left;
+}
+
+.list-info .box small {
+  font-size: 10px;
+}
+.info-price{
+    text-algin: left;
+    inline-size: fit-content;
+    padding-top: 15px;
+    padding-left: 10px;
+    position: absolute;
+	bottom: 20px;
+	left: 30px;
+}
+.ticket-flight-info {
+    background-color: #1FA0F9;
+    color: white;
+}
+.ticket-airlane{
+    display: absolute;
+    right: 30px;
+}
+.plane-icon{
+    margin: 5px;
+    padding: 0px;
+    padding-left: 5px;
+    align-self: center;
+    color: #FFD733;
+}
+.div-info{
+    padding: 5px;
+    align-self: center;
+}
+.h-full{
+    height: 100%;
+}

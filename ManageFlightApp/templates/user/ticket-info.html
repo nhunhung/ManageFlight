@@ -1,0 +1,141 @@
+{% extends "user/layout/base.html" %}
+
+{% block title %}
+<title>TRAVEL WITH MYCHU | Trang chủ</title>
+{% endblock %}
+
+{% block heading %}
+Trang chủ
+{% endblock %}
+
+{% block content %}
+<body style="background-color: #7BCAFC;">
+<div class="lists-container" style="margin: 20px 0px">
+    <div class="ticket-info div-center">
+        <div class="rad-bor row" style="padding: 0px; max-width: ">
+            <div class="ticket-flight-info col" style="padding: 10px; border-radius: 20px">
+                <div class="row">
+                    <h4 style="text-align: center; color: #FFD733;">ECONOMY CLASS</h4>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <small>Tan Son Nhat</small>
+                    </div>
+                    <div class="col">
+                        <small style="float: right;">Ha Noi</small>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col" style="align-self: center;">
+                        <h2>TSN</h2>
+                    </div>
+                    <div class="col">
+                        <i class="fa fa-plane plane-icon" aria-hidden="true" style="font-size: xxx-large;"></i>
+                    </div>
+                    <div class="col" style="align-self: center;">
+                        <h2 style="float: right;">HN</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col div-info">
+                        <small>FLIGHT</small>
+                        <strong>65-11B787</strong>
+                    </div>
+                    <div class="col div-info">
+                        <div class="info"><img src="./static/image/vnlogo.png" class="img"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col div-info">
+                        <small>Departure</small>
+                        <strong>11:35</strong>
+                    </div>
+                    <div class="col div-info">
+                        <small>Arrival</small>
+                        <strong>13:50</strong>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col div-info">
+                        <small>Boarding</small>
+                        <strong>11:05</strong>
+                    </div>
+                    <div class="col div-info">
+                        <small>Gate</small>
+                        <strong>11B</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container p-5 my-5 rad-bor col">
+            <h4 id="title-info-person">Profile person <strong>1</strong></h4>
+            <form>
+                <div class="row">
+                    <div>
+                        <fieldset>
+                            <label for="firstname">First Name</label>
+                            <input type="text" class="form-control" id="firstname" placeholder="Enter your firstname"
+                                   name="firstname">
+                        </fieldset>
+                    </div>
+                    <div>
+                        <fieldset>
+                            <label for="last-name">Last Name and Middle Name</label>
+                            <input type="text" class="form-control" id="last-name"
+                                   placeholder="Enter your last name and middle name" name="last-name">
+                        </fieldset>
+                    </div>
+                    <div>
+                        <fieldset>
+                            <label for="dob">Date of birth</label>
+                            <input type="date" class="form-control" id="dob" placeholder="Enter your date of birth"
+                                   name="dob">
+                        </fieldset>
+                    </div>
+                    <div>
+                        <fieldset>
+                            <label for="gender">Gender</label>
+                            <select class="form-select" id="gender">
+                                <option value="female">Female</option>
+                                <option value="male">Male</option>
+                            </select>
+                        </fieldset>
+                    </div>
+                    <div>
+                        <fieldset>
+                            <label>CCCD/CMND</label>
+                            <input name="email" type="text" class="form-control"
+                                   placeholder="Enter your id">
+                        </fieldset>
+                    </div>
+                    <div>
+                        <fieldset>
+                            <label>Phone Number</label>
+                            <input name="password" type="password" class="form-control"
+                                   placeholder="Enter your phone number">
+                        </fieldset>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <fieldset>
+                    <button type="submit" class="btn" style="background-color: #0579C3">BACK TO FLIGHTS
+                    </button>
+                </fieldset>
+            </div>
+            <div class="col">
+                <fieldset>
+                    <button type="submit" class="btn" style="background-color: #1FA0F9">PICK POSITION
+                    </button>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+{% endblock %}

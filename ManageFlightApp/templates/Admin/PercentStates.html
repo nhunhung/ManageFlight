@@ -1,0 +1,79 @@
+{% extends 'admin/base.html' %}
+
+{% block body %}
+            <div class="row">
+                        <div class="col-md-6">
+                            <table class="table">
+                                <tr>
+                                    <td>Tên tuyến bay</td>
+                                    <td>Tỷ lệ doanh thu</td>
+                                </tr>
+                                {% for c in  percent_states %}
+                                <tr>
+                                    <td>{{ c[0] }}</td>
+                                    <td> {{ c[1] }}</td>
+
+                                </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div>
+                              <canvas id="MyCategoryChart"></canvas>
+                            </div>
+                        </div>
+            </div>
+
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script>
+                  window.onload = function(){
+                             const ctx = document.getElementById('MyCategoryChart').getContext('2d')
+                             let data = []
+                             let labels = []
+                             let r, g, b
+                             let colors = []
+                             let borderColors = []
+                             {% for c in percent_states %}
+                                        labels.push('{{ c[0] }}')
+                                        data.push({{ c[1] }})
+                                         r = Math.random()*255
+                                         g = Math.random()*255
+                                         b = Math.random()*255
+                                         colors.push(`rgba(${r}, ${g}, ${b}, 0.2)`)
+                                         borderColors.push(`rgba(${r}, ${g}, ${b}, 0.2)`)
+                             {% endfor %}
+
+                              loadChart(ctx, labels, data, 'doughnut', colors, borderColors)
+
+                      }
+
+function loadChart(ctx, labels, data, type, colors, borderColors){
+
+             new Chart(ctx, {
+                         type: type,
+                         data: {
+                               labels: labels,
+                               datasets: [{
+                                           label: '# Tỷ lệ trên tổng doanh thu',
+                                           data: data,
+                                           borderWidth: 1,
+                                           backgroundColor: colors,
+                                           borderColor:  borderColors
+                               }]
+                         },
+                               options:{
+
+                                           scales: {
+                                                     y: {
+                                                          beginAtZero: true
+                                                     }
+                                           }
+
+                               }
+              });
+
+ }
+            </script>
+
+{% endblock %}

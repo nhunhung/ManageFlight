@@ -1,0 +1,67 @@
+{%extends "user/layout/base.html"  %}
+
+{% block title %}
+<title>ACCOUNT</title>
+{% endblock %}
+
+{% block content %}
+<body style="background-color: #7BCAFC;">
+<div class="lists-container" style="margin: 20px 0px">
+    <div class="profile div-center">
+        <div class="div-center col-md-offset-1">
+            <div class="author-image">
+                <img src="{{ url_for('static', filename='image/ngoc.png') }}" alt="Image placeholder"
+                     class="rounded-circle mx-auto"
+                     style="height: 100px; display: block; -left: auto; margin-right: auto;">
+            </div>
+            <div class="" style="text-align: center">
+                <h4>NHUNGOCDETHUONGDAY</h4>
+            </div>
+            <hr>
+        </div>
+        <form>
+            <div class="row">
+                <div>
+                    <fieldset>
+                        <label>NAME :</label>
+                        <input name="name" type="text" class="form-control" placeholder="NHƯ NGỌC NÈ">
+                    </fieldset>
+                </div>
+                <div>
+                    <fieldset>
+                        <label>EMAIL :</label>
+                        <input name="email" type="text" class="form-control"
+                               placeholder="nguyenhoangnhungoc.1411@gmail.com">
+                    </fieldset>
+                </div>
+                <div>
+                    <fieldset>
+                        <label>PASSWORD :</label>
+                        <input name="password" type="password" class="form-control" placeholder="*********">
+                    </fieldset>
+                </div>
+                <div class="row">
+                <div class="col-md-4">
+                    <fieldset>
+                        <button type="submit" class="btn btn-success">UPDATE
+                        </button>
+                    </fieldset>
+                </div><div class="col-md-4">
+                    <fieldset>
+                        <button type="submit" class="btn btn-warning">DELETE ACCOUNT
+                        </button>
+                    </fieldset>
+                </div>
+                    <div class="col-md-4">
+                        <fieldset>
+                            <button type="submit" class="btn btn-danger">SIGN OUT
+                            </button>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+{% endblock %}

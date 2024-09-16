@@ -1,0 +1,103 @@
+{% extends 'admin/base.html' %}
+
+{% block body %}
+            <div class="row">
+                        <div class="col-md-6">
+                            <table class="table">
+                                <tr>
+                                    <td>Tên tuyến bay</td>
+                                    <td>Tháng</td>
+                                     <td>Doanh Thu</td>
+                                </tr>
+                                {% for c in  revenue_states %}
+                                <tr>
+                                    <td>{{ c[0] }}</td>
+                                    <td> {{ c[1] }}</td>
+                                    <td> {{ "{:,.1f}".format(c[2]) }}</td>
+
+                                </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+<!--                        <form>-->
+<!--                             <div class="col-md-4">-->
+<!--                                    <div class="form-group">-->
+<!--                                        <input type="text" name="year" placeholder="Nhập năm..." class="form-control">-->
+<!--                                    </div>-->
+<!--                                        <input type="submit" value="Thống kê" class="btn btn-info">-->
+<!--                             </div>-->
+<!--                        </form>-->
+
+                        <div class="col-md-6">
+                            <div>
+                              <canvas id="MyCategoryChart"></canvas>
+                            </div>
+                        </div>
+            </div>
+
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script>
+                  window.onload = function(){
+                             const ctx = document.getElementById('MyProductChart').getContext('2d')
+                             let data = []
+                             let labels = []
+                             let r, g, b
+                             let colors = []
+                             let borderColors = []
+                             {% for c in revenue_states %}
+                                        labels.push({{ c[1] }})
+                                        data.push({{ c[2] }})
+                                         r = Math.random()*255
+                                         g = Math.random()*255
+                                         b = Math.random()*255
+                                         colors.push(`rgba(${r}, ${g}, ${b}, 0.2)`)
+                                         borderColors.push(`rgba(${r}, ${g}, ${b}, 0.2)`)
+                             {% endfor %}
+
+                              loadChart(ctx, labels, data, 'bar', colors, borderColors)
+
+                    }
+
+                function loadChart(ctx, labels, data, type, colors, borderColors){
+
+                             new Chart(ctx, {
+                                         type: type,
+                                         data: {
+                                               labels: labels,
+                                               datasets: [{
+                                                           label: '# of Votes',
+                                                           data: data,
+                                                           borderWidth: 1,
+                                                           backgroundColor: colors,
+                                                           borderColor:  borderColors
+                                               }]
+                                         },
+                                               options:{
+
+             new Chart(ctx, {
+                         type: type,
+                         data: {
+                               labels: labels,
+                               datasets: [{
+                                           label: '# Tổng doanh thu của tuyến bay',
+                                           data: data,
+                                           borderWidth: 1,
+                                           backgroundColor: colors,
+                                           borderColor:  borderColors
+                               }]
+                         },
+                               options:{
+
+                                                           scales: {
+                                                                     y: {
+                                                                          beginAtZero: true
+                                                                     }
+                                                           }
+
+                                               }
+                              });
+
+                 }
+            </script>
+
+{% endblock %}
