@@ -9,7 +9,6 @@ body {
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-	min-height: 100vh;
 	margin: 0;
     spacing: 0px
 }
@@ -100,23 +99,7 @@ body {
 .list-preview .top-list{
   padding: 10px;
 }
-/*
-.list-preview .cities .city{
-   float: left;
-}
-.list-preview .cities .city:nth-child(2){
-   float: right;
-}
-.list-preview .cities .airplane {
-  position: absolute;
-  width: 30px;
-  height: 25px;
-  top: 141px;
-  left: 50%;
-*/
-/*
-}
-*/
+
 
 .list-preview .cities {
   position: relative;

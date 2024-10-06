@@ -1,35 +1,54 @@
-from flask import render_template
-from ManageFlightApp import app, controllers, utils, login
+from flask import render_template, session, jsonify
+from ManageFlightApp import app, controllers, utils, login, employee
+# from flask_session import Session
+from ManageFlightApp import app, controllers, utils, login, employee, decorator
+from ManageFlightApp.templates.ChatAI.ChatAI import chatbot_response
 
-app.add_url_rule("/", 'index', controllers.index)
+app.add_url_rule("/", 'index', controllers.index, methods=['get', 'post'])
 app.add_url_rule("/register", 'register', controllers.register, methods=['get', 'post'])
 app.add_url_rule('/login', 'login', controllers.login, methods=['get', 'post'])
 app.add_url_rule('/logout', 'logout', controllers.logout_my_user)
 app.add_url_rule('/sign_admin', 'sign_admin', controllers.sign_admin, methods=['post'])
-app.add_url_rule('/list-flight', 'list-flight', controllers.list_flight_booking, methods=['get'])
+app.add_url_rule('/list-flight', 'list-flight', controllers.list_flight_booking, methods=['get', 'post'])
 app.add_url_rule('/load_pos', 'load_pos', controllers.load_pos, methods=['get'])
+app.add_url_rule('/ticket', 'ticket', controllers.ticket, methods=['get'])
+app.add_url_rule('/employee', 'index_employee', employee.index_employee, methods=['get'])
+app.add_url_rule('/create_schedule', 'create_schedule', employee.create_schedule, methods=['get', 'post'])
+app.add_url_rule('/list_buy_ticket', 'list_buy_ticket', employee.list_buy_ticket, methods=['get'])
+app.add_url_rule('/employee_buy_ticket', 'employee_buy_ticket', employee.employee_buy_ticket, methods=['get'])
+app.add_url_rule('/load_detail_flight', 'load_detail_flight', employee.load_detail_flight,
+                 methods=['get'])
+app.add_url_rule('/confirm', 'enter_customer_info', controllers.enter_customer_info, methods=['get', 'post'])
+app.add_url_rule('/info', 'enter_flight_detail', controllers.enter_flight_detail, methods=['get', 'post'])
+app.add_url_rule('/api/info', 'api_info', controllers.api_info, methods=['post'])
+app.add_url_rule('/flight_detail', 'flight_detail', employee.flight_detail,
+                 methods=['get'])
+
+app.add_url_rule("/UserInformation", 'user_information', employee.user_information,
+                 methods=['get'])
+
+
+app.add_url_rule("/payment", 'payment', employee.payment,
+                 methods=['get', 'post'])
+app.add_url_rule("/api/pay", 'payment', employee.payment,
+                 methods=['post'])
+app.add_url_rule("/api/pay_cus", 'payment_cus', controllers.payment_cus,
+                 methods=['post'])
+
+app.add_url_rule("/enter_info", "enter_info", employee.enter_info, methods=["get", "post"])
+app.add_url_rule("/submit_airplane", "submit_airplane", employee.submit_airplane, methods=["get", "post"])
+# app.add_url_rule("/delete_flight/<int:flight_id>", "delete_flight", employee.delete_flight, methods=["get"])
+app.add_url_rule("/export_ticket", "export_ticket", employee.export_ticket, methods=["get"])
+app.add_url_rule("/pay_online", "pay_online", controllers.pay_online, methods=["get"])
+app.add_url_rule("/create-payment-intent", "create_payment_intent", controllers.create_payment_intent, methods=["POST"])
+app.add_url_rule("/config", "get_publishable_key", controllers.get_publishable_key, methods=["get"])
+
+
 # app.add_url_rule('/ticket', 'ticket', controllers.ticket, methods=['get'])
-
-
 
 @app.route("/user")
 def user():
     return render_template('user/index.html')
-
-# @app.route("/login")
-# def login():
-#     return render_template('home/login.html')
-
-# @app.route("/list")
-# def list_flights():
-#     return render_template('home/list-flight.html')
-
-#
-
-
-@app.route("/ticket")
-def ticket():
-    return render_template('user/ticket.html')
 
 
 @app.errorhandler(404)
@@ -41,62 +60,32 @@ def page_not_found(error):
 def account():
     return render_template('user/account.html')
 
-
-@app.route("/pos")
-def position():
-    return render_template('user/position.html')
-
-
-@app.route("/info")
-def info():
-    return render_template('user/ticket-info.html')
+#
+# app.config['SECRET_KEY'] = '123'
+# app.config['SESSION_TYPE'] = 'filesystem'
+# Session(app)
 
 
-@app.route("/confirm")
-def confirm():
-    return render_template('user/confirm.html')
+# @app.route("/info")
+# def info():
+#     return render_template('user/ticket-info.html')
 
-#
-# @app.route("/manage-route")
-# def manage_routes():
-#     return render_template('admin/manage-route.html')
-#
-# @app.route("/manage-flight")
-# def manage_flights():
-#     return render_template('admin/manage-flight.html')
-#
-# @app.route("/manage-airplane")
-# def manage_airplanes():
-#     return render_template('admin/manage-airplane.html')
-#
-# @app.route("/manage-discount")
-# def manage_discounts():
-#     return render_template('admin/manage-discount.html')
-#
-# @app.route("/manage-pricing")
-# def manage_pricings():
-#     return render_template('admin/manage-pricing.html')
-#
-# @app.route("/manage-account")
-# def manage_accounts():
-#     return render_template('admin/manage-account.html')
-#
-# @app.route("/manage-booking")
-# def manage_bookings():
-#     return render_template('admin/manage-booking.html')
-#
-# @app.route("/manage-payment")
-# def manage_payments():
-#     return render_template('admin/manage-payment.html')
-#
-# @app.route("/manage-type-of-position")
-# def manage_type_of_positions():
-#     return render_template('admin/manage-type-of-position.html')
+
 
 
 @login.user_loader
 def load_user(user_id):
     return utils.get_user_by_id(user_id=user_id)
+
+
+@app.route('/chatbot', methods=['POST'])
+def chatbot_reply():
+    data = request.json
+    user_message = data.get('message')
+
+    response = chatbot_response(user_message)
+
+    return jsonify({'reply': response})
 
 
 if __name__ == '__main__':
