@@ -1,0 +1,63 @@
+{% extends 'employee/layout/base.html' %}
+
+{% block content %}
+    {% if err_msg %}
+        <div class="alert alert-success" role="alert">
+               {{ err_msg }}
+        </div>
+    {% else %}
+        <div class="alert alert-danger">
+            Not Success
+        </div>
+    {% endif %}
+    <div class="container" style="background-color: white; margin-top: 30px; width:50%; height:80%; border-radius:10px">
+         <form class="row g-3" enctype="multipart/form-data" style="margin-top:10px" action="{{ url_for('create_schedule') }}" method="post">
+      <div class="col-md-6">
+          <label for="inputState" class="form-label">từ đâu</label>
+          <select required name='from' id="inputState" class="form-select">
+                {% for a in airport %}
+                <option value="{{ a.name}}" id="from">{{ a.name }}</option>
+                {% endfor %}
+            </select>
+      </div>
+      <div class="col-md-6">
+            <label for="inputState" class="form-label">đến đâu</label>
+             <select required name='to' id="inputState" class="form-select">
+                {% for a in airport %}
+                <option value="{{ a.name}}" id="from">{{ a.name }}</option>
+                {% endfor %}
+            </select>
+      </div>
+      <div class="col-6">
+            <label for="inputAddress" class="form-label">Ngày đi</label>
+            <input type="date" class="form-control" name="date_departure" id="inputAddress" placeholder="1234 Main St">
+      </div>
+        <div class="col-6">
+            <label for="inputAddress" class="form-label">Ngày đến</label>
+            <input type="date" class="form-control" name="date_arrival" id="inputAddress" placeholder="1234 Main St">
+      </div>
+          <div class="col-md-6">
+            <label for="inputCity" class="form-label">Số lượng ghế hạng 1</label>
+            <input type="text" class="form-control" name="rate1" id="inputCity">
+          </div>
+          <div class="col-md-6">
+            <label for="inputState" class="form-label">Số lượng ghế hạng 2</label>
+            <input type="text" class="form-control" name="rate2" id="inputState">
+          </div>
+             <div class="col-md-12">
+
+                    <label for="inputState" class="form-label">Số lượng sân bay trung gian</label>
+                    <input type="text" class="form-control" name="quantity_airport" id="inputState">
+
+
+          </div>
+
+      <div class="col-12">
+        <button type="submit" style="padding: 10px 30px" class="btn btn-primary">Next</button>
+      </div>
+    </form>
+
+
+    </div>
+
+{% endblock %}

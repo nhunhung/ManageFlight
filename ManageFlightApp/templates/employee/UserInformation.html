@@ -1,0 +1,35 @@
+{% extends 'employee/layout/base.html' %}
+
+{% block content %}
+
+    <div class="container" style="background-color: white; margin-top: 30px; width:50%; height:80%; border-radius:10px">
+        <h1 style="margin: 30px 30px"> Nhập thông tin người dùng </h1>
+
+         <form class="row g-3" enctype="multipart/form-data" style="margin-top:100px" action="{{ url_for('enter_info') }}" method="post">
+              <div class="col-md-6">
+                  <label for="inputState" class="form-label">Họ và tên</label>
+                  <input type="text" class="form-control" name="fullname" id="inputAddress" placeholder="1234 Main St">
+
+              </div>
+              <div class="col-md-6">
+                    <label for="inputState" class="form-label">Ngày sinh</label>
+                    <input type="date" class="form-control" name="birthdate" id="inputAddress" placeholder="1234 Main St">
+
+              </div>
+              <div class="col-6">
+                    <label for="inputAddress" class="form-label">Số điện thoại</label>
+                    <input type="text" class="form-control" name="phone" id="inputAddress" placeholder="1234 Main St">
+              </div>
+              <div class="col-6">
+                    <label for="inputAddress" class="form-label">CMDD/CCCD</label>
+                    <input type="text" class="form-control" name="identify" id="inputAddress" placeholder="1234 Main St">
+              </div>
+             <div class="col-12">
+                <button type="submit" style="padding: 10px 30px" class="btn btn-primary">Save</button>
+              </div>
+         </form>
+
+
+    </div>
+
+{% endblock %}

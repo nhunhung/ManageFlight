@@ -1,0 +1,30 @@
+{% extends "user/layout/base.html" %}
+
+{% block title %}
+<title>TRAVEL WITH SUAGAR GLIDER | Trang chủ</title>
+{% endblock %}
+
+{% block heading %}
+        Thanh toán
+{% endblock %}
+
+{% block content %}
+    <div class="container" style="margin-top: 50px">
+         <div class="sr-root">
+        <div class="sr-main">
+
+             <form id="payment-form">
+                  <div id="payment-element">
+                  </div>
+                <button class="form-control btn btn-primary" style="margin-top: 30px">Pay</button>
+                <div id="error-messages">
+                </div>
+             </form>
+        </div>
+
+    </div>
+    </div>
+
+
+  <script src="{{ url_for('static', filename='js/stripe.js') }}"></script>
+{% endblock %}

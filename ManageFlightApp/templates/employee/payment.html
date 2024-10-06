@@ -1,0 +1,179 @@
+{% extends 'employee/layout/base.html' %}
+
+{% block content %}
+<!--        {% if messg  %}-->
+<!--        <div class="btn btn-success">-->
+<!--            <h1 id="success">{{ messg }}</h1>-->
+<!--        </div>-->
+<!--        {% endif %}-->
+
+    {% if session['info'] %}
+    <div class="container" style="background-color: white; margin-top: 50px">
+
+        <div class="lists-container" style="margin: 20px 0px">
+            <div class="confirm-info">
+                <div class="row">
+                <div id="info-flight" class="col">
+                    <h6>THÔNG TIN CHUYẾN BAY</h6>
+                    <div class="container p-5 rad-bor h-full">
+                        <div class="row">
+                            <label class="col">Airline</label>
+                            <h4 class="col">SUGAR GLIDER</h4>
+                        </div>
+                        <div class="row">
+                            <label class="col">Airplane</label>
+                            <h4 class="col">Beoing 787</h4>
+                        </div>
+                        <div class="row">
+                            <label class="col">Flight Number</label>
+                            <h4 class="col">65-11B787</h4>
+                        </div>
+                        <div class="row">
+                            <label class="col">From</label>
+                            <h4 class="col">{{ session['info']['departure'] }}</h4>
+                        </div>
+                        <div class="row">
+                            <label class="col">to</label>
+                            <h4 class="col">{{ session['info']['arrival'] }}</h4>
+                        </div>
+
+                    <div id="info-flight" class="col">
+                        <h6>THÔNG TIN CHUYẾN BAY</h6>
+                        <div class="container p-5 rad-bor h-full">
+                            <div class="row">
+                                <label class="col">Airline</label>
+                                <h4 class="col">Vietname Airline</h4>
+                            </div>
+                            <div class="row">
+                                <label class="col">Airplane</label>
+                                <h4 class="col">Beoing 787</h4>
+                            </div>
+                            <div class="row">
+                                <label class="col">Flight Number</label>
+                                <h4 class="col">65-11B787</h4>
+                            </div>
+                            <div class="row">
+                                <label class="col">From</label>
+                                <h4 class="col">{{ session['info']['departure'] }}</h4>
+                            </div>
+                            <div class="row">
+                                <label class="col">to</label>
+                                <h4 class="col">{{ session['info']['arrival'] }}</h4>
+                            </div>
+
+                            <div class="row">
+                                <label class="col">Departure</label>
+                                <h4 class="col">{{ session['info']['departure_time'] }}</h4>
+                            </div>
+                            <div class="row">
+                                <label class="col">Arrival</label>
+                                <h4 class="col">{{ session['info']['arrival_time'] }}</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="info-client" class="col">
+                        <h6>THÔNG TIN HÀNH KHÁCH</h6>
+                        <div class="container p-5 rad-bor h-full">
+                            <div class="row">
+                                <label class="col">Full Name</label>
+                                <h4 class="col">{{ session['info']['name'] }}</h4>
+                            </div>
+                            <div class="row">
+                                <label class="col">CMND/CCCD</label>
+                                <h4 class="col">{{ session['info']['identify'] }}</h4>
+                            </div>
+                            <div class="row">
+                                <label class="col">Date of birth</label>
+                                <h4 class="col">{{ session['info']['birthdate'] }}</h4>
+                            </div>
+
+                            <div class="row">
+                                <label class="col">Phone Number</label>
+                                <h4 class="col">{{ session['info']['phone'] }}</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="info-booking" class="col">
+                        <h6>THÔNG TIN ĐẶT VÉ</h6>
+                        <div class="container p-5 rad-bor h-full">
+
+                            <div class="row">
+                                <label class="col">Class</label>
+                                <h4 class="col">{{ session['info']['class'] }}</h4>
+                            </div>
+                            <div class="row">
+                                <label class="col">Seat Number</label>
+                                <h4 class="col">A1</h4>
+                            </div>
+                            <div class="row">
+                                <label class="col">Total</label>
+                                <h4 class="col">{{ session['info']['price'] }}</h4>
+                            </div>
+
+                            <div class="row" style="position: absolute; bottom: 25px; right: 65px;">
+<!--                                <div class="col">-->
+<!--                                    <fieldset>-->
+<!--                                        <button type="submit" class="btn" style="background-color: #1FA0F9; color: white; width: 100px;">Online-->
+<!--                                        </button>-->
+<!--                                    </fieldset>-->
+<!--                                </div>-->
+                                <div class="col">
+                                    <form method="post" action="{{ url_for('payment') }}">
+                                        <input type="submit" class="form-control btn btn-success">
+                                    </form>
+    <!--                                <fieldset>-->
+    <!--                                          <a href="{{ url_for('payment') }}" style="background-color: #1FA0F9; color: white; width: 100px;">-->
+    <!--                                              submit-->
+    <!--                                          </a>-->
+    <!--                                </fieldset>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+    </div>
+        {% else %}
+                <div class="alert alert-success">
+                     Thành công
+                </div>
+                <div class="col">
+                    <form method="get" action="{{ url_for('export_ticket') }}">
+
+                    <button type="submit" class="btn"
+                            style="background-color: #1FA0F9;
+                             color: white; width: 100%; margin: 0 auto">Xuất vế
+                    </button>
+                    </form>
+             </div>
+     {% endif %}
+
+<!--    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">-->
+<!--      Launch demo modal-->
+<!--    </button>-->
+<!--    {% if mssg %}-->
+<!--    &lt;!&ndash; Modal &ndash;&gt;-->
+<!--    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--      <div class="modal-dialog">-->
+<!--        <div class="modal-content">-->
+<!--          <div class="modal-header">-->
+<!--            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>-->
+<!--            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+<!--          </div>-->
+<!--          <div class="modal-body">-->
+<!--            ...-->
+<!--          </div>-->
+<!--          <div class="modal-footer">-->
+<!--            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
+<!--            <button type="button" class="btn btn-primary">Save changes</button>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    </div>-->
+    {% endif %}
+
+{% endblock %}

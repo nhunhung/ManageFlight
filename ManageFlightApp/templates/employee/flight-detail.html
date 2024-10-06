@@ -1,0 +1,65 @@
+{% extends 'employee/layout/base.html' %}
+
+{% block content %}
+    <div class="container" style="background-color: white; margin-top: 30px; width:50%; height:80%; border-radius:10px">
+         <form class="row g-3" enctype="multipart/form-data" style="margin-top:10px" action="{{ url_for('create_schedule') }}" method="post">
+
+      <div class="col-md-6">
+
+          <label for="inputState" class="form-label">Từ đâu</label>
+          <select required name='from' id="inputState" class="form-select">
+                {% for a in airport %}
+                <option value="{{ a.name}}" {% if a.id == flight_detail.Route.departure_id %} selected {% endif %}
+                        >{{ a.name }}</option>
+                {% endfor %}
+            </select>
+      </div>
+      <div class="col-md-6">
+            <label for="inputState" class="form-label">đến đâu</label>
+             <select required name='to' id="inputState" class="form-select">
+                {% for a in airport %}
+                <option value="{{ a.name}}" id="from" {% if a.id == flight_detail.Route.arrival_id %} selected {% endif %}>{{ a.name }}</option>
+                {% endfor %}
+            </select>
+      </div>
+      <div class="col-6">
+            <label for="inputAddress" class="form-label">Ngày đi</label>
+            <input type="date" class="form-control" value="{{ flight_detail.Flight.departure_time.strftime('20%y-%m-%d') }}"
+                   name="date_departure" id="inputAddress" placeholder="1234 Main St">
+      </div>
+        <div class="col-6">
+            <label for="inputAddress" class="form-label">Ngày đến</label>
+            <input type="date" class="form-control" value="{{ flight_detail.Flight.arrival_time.strftime('20%y-%m-%d') }}"
+                   name="date_arrival"  id="inputAddress" placeholder="1234 Main St">
+      </div>
+          <div class="col-md-6">
+            <label for="inputCity" class="form-label">Số lượng ghế hạng 1</label>
+            <input type="text" class="form-control" value="{{ flight_detail.Flight.quantity_class_1 }}" name="rate1" id="inputCity">
+          </div>
+          <div class="col-md-6">
+            <label for="inputState" class="form-label">Số lượng ghế hạng 2</label>
+            <input type="text" class="form-control" value="{{ flight_detail.Flight.quantity_class_1 }}" name="rate2" id="inputState">
+          </div>
+            {% for p in stops %}
+             {% if p.flight_id == flight_detail.Flight.id %}
+         <div class="col-md-6">
+            <label for="inputCity" class="form-label"> sân bay trung gian </label>
+            <input type="text" class="form-control" value="{{ p.airport.name }}" name="airport1" id="inputCity">
+          </div>
+          <div class="col-md-6">
+            <label for="inputState" class="form-label">Thời gian dừng</label>
+            <input type="text" value="{{ p.time_delay_min }}" class="form-control" name="time_delay1" id="inputState">
+          </div>
+             {% endif %}
+        {% endfor %}
+
+
+      <div class="col-12">
+        <button type="submit" style="padding: 10px 30px" class="btn btn-primary">Save</button>
+      </div>
+    </form>
+
+
+    </div>
+
+{% endblock %}

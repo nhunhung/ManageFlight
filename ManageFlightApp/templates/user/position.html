@@ -1,0 +1,248 @@
+<<<<<<< HEAD
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SEAT</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/user/position.css') }}">
+    <script src="ManageFlightApp\static\js\user\position.js"></script>
+</head>
+<body style="background-color: #7BCAFC;">
+<header style="margin: -50px">
+    {% include 'user/layout/header.html' %}
+</header>
+
+
+<div class="container-btn row">
+    {% for p in pos_type %}
+    <div class="btn btn-warning row" style="margin-top: 10px; border-radius: 20px; " onclick="showAdd()"
+    value="{{ p.id }}" id="type">{{ p.type_of_position_name }}</div>
+    {% endfor %}
+</div>
+
+<div style="padding:50px"></div>
+<div class="row" id="eco-seat">
+    <div class="seat-info" style="">
+        <div class="row">
+            <div class="seat">
+                <i class="fa fa-circle seat-icon seat-icon-disable"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="info">
+                <h6 style="text-align: center; margin: 0px">GHẾ ĐÃ ĐƯỢC CHỌN</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="seat">
+                <i class="fa fa-circle seat-icon seat-icon-select"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="info">
+                <h6 style="text-align: center; margin: 0px">GHẾ ĐANG CHỌN</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="seat">
+                <i class="fa fa-circle seat-icon seat-icon-empty"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="info">
+                <h6 style="text-align: center; margin: 0px">GHẾ TRỐNG</h6>
+            </div>
+        </div>
+    </div>
+<div class="seat-container line-2">
+        {% if class_id == 1 %}
+        <div class="seat-row">
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px; font-size: 20px; width: 300px">Khoang phổ thông</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class=" seat-row col-md-6">
+            {% for seat in seats %}
+
+            {% if seat.id < seat_first + 15 %}
+        <div class="seat-row col-md-2">
+             <div class="seat">
+                <h3 style="text-align: center; margin: 0px; font-size: 15px">{{seat.number_seat}}</h3>
+            </div>
+            <div class="seat">
+            {% if seat.status == False %}
+                    <i value="{{seat.name}}"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true" onclick="pos( {{ seat.id }}, '{{ seat.number_seat }}', '{{ seat.status }}' )" ></i>
+            {% else %}
+                    <i value="{{seat.name}}"
+                   class="fa fa-circle seat-icon seat-icon-disable seat-icon-check"
+                   aria-hidden="true"  ></i>
+            {% endif %}
+            </div>
+        </div>
+            {% endif %}
+         {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+    {% if class_id == 2 %}
+        <div class="seat-row">
+            <div class="seat">
+                <h3 style="text-align: center; margin: 0px; font-size: 20px; width: 300px">Khoang thương gia</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class=" seat-row col-md-6">
+            {% for seat in seats %}
+
+            {% if seat.id >= seat_first + 15 %}
+        <div class="seat-row col-md-2">
+             <div class="seat">
+                <h3 style="text-align: center; margin: 0px; font-size: 15px">{{seat.number_seat}}</h3>
+            </div>
+            <div class="seat">
+                {% if seat.status == False %}
+                    <i value="{{seat.name}}"
+                   class="fa fa-circle seat-icon seat-icon-empty seat-icon-check"
+                   aria-hidden="true" onclick="pos( {{ seat.id }}, '{{ seat.number_seat }}', '{{ seat.status }}' )"></i>
+            {% else %}
+                    <i value="{{seat.name}}"
+                   class="fa fa-circle seat-icon seat-icon-disable seat-icon-check"
+                   aria-hidden="true"  ></i>
+            {% endif %}
+            </div>
+        </div>
+            {% endif %}
+         {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+</div>
+
+
+<div class="row" style="padding-top: 20px" id="info-pick">
+    <div class="seat-info" style="">
+        <div class="row">
+            <fieldset>
+                <button class="btn" type="submit" style="margin-left: 50px">
+                    <a href="{{ url_for('enter_flight_detail' )}}">CONTINUE</a>
+                </button>
+            </fieldset>
+        </div>
+    </div>
+</div>
+</div>
+<script>
+let seatArr = [];
+let price = 0;
+
+window.onload = function () {
+    loadOnClick();
+    hideBusi();
+};
+
+function loadOnClick() {
+    var listSeat = document.getElementsByClassName('seat-icon-check');
+    for (const seat of listSeat) {
+        seat.addEventListener("click", e => {
+            if (seat.classList.contains("seat-icon-disable")) {
+                return;
+            }
+            ;
+            if (seat.classList.contains("seat-icon-empty")) {
+                seat.classList.remove("seat-icon-empty");
+                seat.classList.add("seat-icon-select");
+                toList(seat.getAttribute("value"), 1);
+                return;
+            }
+            if (seat.classList.contains("seat-icon-select")) {
+                seat.classList.remove("seat-icon-select");
+                seat.classList.add("seat-icon-empty");
+                toList(seat.getAttribute("value"), 2);
+                return;
+            }
+        });
+    }
+}
+
+function hideBusi() {
+    document.getElementById("busi-seat").style.display = "none";
+    document.getElementById("dex-seat").style.display = "none";
+    document.getElementById("eco-seat").style.display = "none";
+    document.getElementById("info-pick").style.display = "none";
+}
+
+function showAdd() {
+        if( document.getElementById("type").value == '2'){
+            document.getElementById("eco-seat").style.display = "flex";
+    }
+}
+
+
+// script.js
+document.addEventListener('DOMContentLoaded', function () {
+   {% for f in flights %}
+      var btnToggleDetails{{ f.id }} = document.getElementById('btnToggleDetails{{ f.id }}');
+      var collapseExample{{ f.id }} = document.getElementById('collapseExample{{ f.id }}');
+
+      btnToggleDetails{{ f.id }}.addEventListener('click', function () {
+         // Kiểm tra trạng thái hiện tại và thay đổi
+         if (collapseExample{{ f.id }}.classList.contains('show')) {
+            // Nếu đang hiển thị, ẩn đi
+            collapseExample{{ f.id }}.classList.remove('show');
+         } else {
+            // Nếu đang ẩn, hiển thị lên
+            collapseExample{{ f.id }}.classList.add('show');
+         }
+      });
+   {% endfor %}
+});
+    function sendDataToServer() {
+    $.ajax({
+        type: "POST",
+        url: "enter_flight_detail",
+        contentType: "application/json;charset=UTF-8",
+        data: JSON.stringify({ seatArr: seatArr, price: price }),
+        success: function (response) {
+            console.log("Data sent successfully");
+        },
+        error: function (error) {
+            console.error("Error sending data: ", error);
+        }
+    });
+}
+    var jsonData = {
+    seat: 'seatArr',
+    price: 'price'
+};
+
+function pos(id, name, status) {
+     event.preventDefault();
+    console.log("ham đc goi", id, name, status);
+
+    fetch("/api/info", {
+        method: "POST",
+        body: JSON.stringify({
+            "id": id,
+            "name": name,
+            "status": status
+        }),
+        headers: {
+            'Content-Type': 'Application/json'
+        }
+    })
+    .then(res => res.json())
+    .catch(error => {
+        console.error("Error in POST request: ", error);
+    });
+}
+</script>
+</body>
+</html>

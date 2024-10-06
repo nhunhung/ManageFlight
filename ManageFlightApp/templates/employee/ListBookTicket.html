@@ -1,0 +1,217 @@
+{% extends 'employee/layout/base.html'%}
+
+{% block content %}
+             <main class="content px-3 py-2">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12 col-md-6 d-flex">
+                            <div class="card flex-fill border-0 illustration">
+                                <div class="card-body p-0 d-flex flex-fill">
+                                    <div class="row g-0 w-100">
+                                        <div class="col-6">
+                                            <div class="p-3 m-1">
+                                                <h4>Sugar Glider</h4>
+                                                <p class="mb-0">Đồng hành cùng bạn trên từng chuyến bay</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 align-self-end text-end">
+                                            <img src="{{url_for('static', filename='image/MayBay.jpg') }}" class="img-fluid illustration-img"
+                                                alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 d-flex">
+                            <div class="card flex-fill border-0">
+                                <div class="card-body py-4">
+                                    <div class="d-flex align-items-start">
+                                        <div class="flex-grow-1">
+                                            <h4 class="mb-2">
+                                                Tìm Kiếm chuyến bay
+                                            </h4>
+                                            <div class="container-fluid">
+                                                <form class="row g-3 align-items-center">
+
+                                                    <div class="col-md-6">
+                                                        <label for="inputState" class="form-label">Từ
+                                                            đâu</label>
+                                                        <select id="inputState" class="form-select">
+                                                            <option selected>Choose...</option>
+                                                            <option>...</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label for="inputState" class="form-label">Đến
+                                                            đâu</label>
+                                                        <select id="inputState" class="form-select">
+                                                            <option selected>Choose...</option>
+                                                            <option>...</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label for="inputAddress"
+                                                            class="form-label">Ngày đi</label>
+                                                        <input type="date" class="form-control"
+                                                            id="inputAddress"
+                                                            placeholder="1234 Main St">
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <label for="inputAddress"
+                                                            class="form-label">Giờ khởi hành </label>
+                                                        <input type="date" class="form-control"
+                                                            id="inputAddress"
+                                                            placeholder="1234 Main St">
+                                                    </div>
+
+                                                    <div class="col-12">
+                                                        <button type="submit"
+                                                            class="btn btn-primary">Tìm</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Table Element -->
+                    <div class="card border-0">
+                        <div class="card-header">
+                            <h5 class="card-title">
+                               Danh sách Khách hàng đặc vế
+                            </h5>
+                            <h6 class="card-subtitle text-muted">
+                            </h6>
+                        </div>
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Mã khách hàng</th>
+                                            <th scope="col">Tên khách hàng </th>
+                                            <th scope="col">Mã chuyến bay</th>
+                                            <th scope="col">Ngày khởi hành</th>
+                                        <th scope="col">Ngày đến</th>
+
+
+                                        <th scope="col">Đổi vế</th>
+
+                                        <th scope="col">Xóa</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for customer, ticket in list_book_ticket %}
+                                    <tr>
+                                        <th>{{ customer.id }}</th>
+                                        <td>{{ customer.name }}</td>
+                                        <td>{{ ticket.flight_id }}</td>
+                                        <td>{{ ticket.flight.departure_time }}</td>
+                                        <td>{{ ticket.flight.arrival_time }}</td>
+                                        <td>
+                                            <a href="">
+                                                <i class="fa-sharp fa-solid fa-pen"></i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a class="nav-link mx-lg-2" data-bs-toggle="modal"
+                                                data-bs-target="#staticBackdrop" href="">
+                                                <i class="fa-solid fa-trash"></i>
+
+                                            </a>
+
+
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+
+                                </tbody>
+                                {% if flight_detail %}
+                                 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+                                                data-bs-keyboard="false" tabindex="-1"
+                                                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <!-- Header modal -->
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Xem chi tiết
+                                                                và sửa chuyến bay</h5>
+                                                            <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+
+                                                        <!-- Body modal -->
+                                                        <div class="modal-body">
+                                                            <div class="container-fluid">
+                                                                <form class="row g-3 align-items-center" >
+
+                                                                <div class="row">
+                                                                     <div class="col-md-6">
+                                                                        <label for="inputState" class="form-label">Từ
+                                                                            đâu</label>
+                                                                        <input type="text" min="1" value="{{ flight_detail.id }}"
+                                                                                class="form-control"/>
+                                                                    </div>
+
+                                                                    <div class="col-md-6">
+                                                                        <label for="inputState" class="form-label">Đến
+                                                                            đâu</label>
+                                                                        <select id="inputState" class="form-select">
+                                                                            <option selected>Choose...</option>
+                                                                            <option>...</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+
+                                                                  <div class="row">
+                                                                       <div class="col-md-6">
+                                                                        <label for="inputAddress"
+                                                                            class="form-label">Ngày đi</label>
+                                                                        <input type="date" class="form-control"
+                                                                            id="inputAddress"
+                                                                            placeholder="1234 Main St">
+                                                                    </div>
+
+                                                                    <div class="col-md-6">
+                                                                        <label for="inputAddress"
+                                                                            class="form-label">Ngày về </label>
+                                                                        <input type="date" class="form-control"
+                                                                            id="inputAddress"
+                                                                            placeholder="1234 Main St">
+                                                                    </div>
+                                                                  </div>
+                                                                    <div class="col-md-12">
+                                                                        <label for="inputState"
+                                                                            class="form-label">Hạng</label>
+                                                                        <select id="inputState" class="form-select">
+                                                                            <option selected>Choose...</option>
+                                                                            <option>...</option>
+                                                                        </select>
+                                                                    </div>
+
+
+
+                                                                    <div class="col-12" style="margin-top: 10px; padding: 30px 50px">
+                                                                        <button type="submit"
+                                                                            class="btn btn-primary">Save</button>
+                                                                    </div>
+                                                                </form>
+
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+                                 </div>
+                                {% endif %}
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </main>
+{% endblock %}
