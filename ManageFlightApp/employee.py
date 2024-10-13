@@ -1,12 +1,31 @@
+from functools import wraps
+
 from flask import render_template,\
     request, session, jsonify, url_for, redirect, send_file
-from ManageFlightApp import UtilsEmployee, utils, app, keys
+from flask_login import current_user
+
+from ManageFlightApp import UtilsEmployee, utils, app, keys, login
 # from twilio.rest import Client
 from io import BytesIO
 from reportlab.pdfgen import canvas
 import stripe
 
 
+def login_required(f):
+    @wraps(f)
+    def check(*args, **kwargs):
+        if not current_user.is_authenticated:
+            return redirect(url_for("login", next=request.url))
+        return f(*args, **kwargs)
+
+    return check
+
+@login.user_loader
+def user_loader(user_id):
+    return utils.get_user_by_id(user_id=user_id)
+
+
+@login_required
 def index_employee():
     return render_template("employee/index.html")
 

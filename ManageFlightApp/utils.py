@@ -56,19 +56,37 @@ def General_States(m):
             .filter(extract('month', Receipt.created_date) == m).all())
 
 
-def register(name, username, password, avatar):
+def register_user(username, password):
     password = str(hashlib.md5(password.strip().encode('utf-8')).hexdigest())
     u = Customer(username=username.strip(),
-                 password=password, avatar=avatar)
+                 password=password)
     db.session.add(u)
     db.session.commit()
 
 
 def auth_user(username, password):
-    password = str(hashlib.md5(password.strip().encode('utf-8')).hexdigest())
+    # Mã hóa mật khẩu bằng MD5
+    hashed_password = str(hashlib.md5(password.strip().encode('utf-8')).hexdigest())
 
-    return Customer.query.filter(Customer.username.__eq__(username.strip()),
-                                 Customer.password.__eq__(password)).first()
+    # Tìm kiếm trong bảng Customer
+    customer = Customer.query.filter(
+        Customer.username == username.strip(),
+        Customer.password == hashed_password
+    ).first()
+
+    # Nếu tìm thấy khách hàng, trả về
+    if customer:
+        return customer
+
+    # Nếu không tìm thấy, tìm kiếm trong bảng Employee
+    employee = Employee.query.filter(
+        Employee.username == username.strip(),
+        Employee.password == hashed_password
+    ).first()
+
+    # Trả về nhân viên nếu tìm thấy
+    return employee
+
 
 
 def get_all_airport_names():

@@ -1,8 +1,25 @@
 from flask import render_template, session, jsonify
+from pdfkit import pdfkit
+
 from ManageFlightApp import app, controllers, utils, login, employee
 # from flask_session import Session
 from ManageFlightApp import app, controllers, utils, login, employee, decorator
 from ManageFlightApp.templates.ChatAI.ChatAI import chatbot_response
+from flask_mail import Mail, Message
+from io import BytesIO
+from xhtml2pdf import pisa
+
+
+# Looking to send emails in production? Check out our Email API/SMTP product!
+app.config['MAIL_SERVER']='sandbox.smtp.mailtrap.io'
+app.config['MAIL_PORT'] = 2525
+app.config['MAIL_USERNAME'] = 'fcc77719fc78cd'
+app.config['MAIL_PASSWORD'] = '2559e4c5926112'
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USE_SSL'] = False
+app.config['MAIL_DEFAULT_SENDER'] = 'ngnhung4685@gmail.com'
+
+mail = Mail(app)
 
 app.add_url_rule("/", 'index', controllers.index, methods=['get', 'post'])
 app.add_url_rule("/register", 'register', controllers.register, methods=['get', 'post'])
@@ -86,6 +103,23 @@ def chatbot_reply():
     response = chatbot_response(user_message)
 
     return jsonify({'reply': response})
+
+
+@app.route('/send_ticket', methods=['POST'])
+def send_ticket():
+    email = request.form['email']
+
+    email_body = render_template('user/mail.html', session=session)
+
+    msg = Message('XÁC NHẬN ĐÃ THANH TOÁN VÉ', recipients=[email])
+    msg.html = email_body
+
+    try:
+        mail.send(msg)
+        return render_template('user/ticket.html', session=session, success_message="ĐÃ GỬI THÀNH CÔNG!")
+    except Exception as e:
+        return render_template('user/ticket.html', session=session, success_message=f"Failed to send email. Error: {str(e)}")
+
 
 
 if __name__ == '__main__':

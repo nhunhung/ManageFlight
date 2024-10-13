@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XÁC NHẬN VÉ MÁY BAY</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #1FA0F9;
+            color: white;
+        }
+        td {
+            background-color: #f9f9f9;
+        }
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>BẠN ĐÃ THANH TOÁN THÀNH CÔNG</h1>
+        <p>Cảm ơn bạn đã tin tưởng chúng tôi! Sau đây là thông tin vé của bạn.</p>
+        <table>
+            <tr>
+                <th>Tên hành khách</th>
+                <td>{{ session['info']['name'] }}</td>
+            </tr>
+            <tr>
+                <th>Số chuyến bay</th>
+                <td>{{ session['info']['plane'] }}</td>
+            </tr>
+            <tr>
+                <th>Nơi khởi hành</th>
+                <td>{{ session['info']['departure'] }}</td>
+            </tr>
+            <tr>
+                <th>Nơi đến</th>
+                <td>{{ session['info']['arrival'] }}</td>
+            </tr>
+            <tr>
+                <th>Số ghế</th>
+                <td>{{ session['info']['name_seat'] }}</td>
+            </tr>
+            <tr>
+                <th>Điện thoại</th>
+                <td>{{ session['info']['phone'] }}</td>
+            </tr>
+            <tr>
+                <th>Thời gian khởi hành</th>
+                <td>{{ session['info']['departure_time'] }}</td>
+            </tr>
+            <tr>
+                <th>Hạng vé</th>
+                <td>{{ session['info']['class'] }}</td>
+            </tr>
+        </table>
+        <div class="footer">
+            <p>Chúc bạn có một chuyến bay tốt đẹp!</p>
+            <p>Sugar Glider Airline</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -91,6 +91,22 @@
 
     </div>
 </div>
+
+<form action="{{ url_for('send_ticket') }}" method="POST">
+    <div class="mb-3">
+        <label for="email" class="form-label">Xin hãy điền mail của bạn để nhận xác nhận!</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="2151053044nhung@ou.edu.vn" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Gửi</button>
+</form>
+
+{% if success_message %}
+    <div class="alert alert-success" role="alert" style="margin-top: 20px;">
+        {{ success_message }}
+    </div>
+{% endif %}
+
+
         <div class="col">
                             <fieldset>
                                 <button type="submit" class="btn" style="background-color: #1FA0F9; color: white; width: 200px; position: fixed; bottom: 0; right: 0;">

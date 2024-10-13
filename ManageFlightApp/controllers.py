@@ -1,3 +1,4 @@
+import logging
 from functools import wraps
 
 import cloudinary
@@ -8,6 +9,8 @@ from flask_login import login_user, logout_user, current_user
 from ManageFlightApp.models import UserRoleEnum
 from ManageFlightApp import app, utils, UtilsEmployee, login
 import stripe
+
+from ManageFlightApp.utils import register_user
 
 
 def login_required(f):
@@ -156,28 +159,27 @@ def enter_customer_info():
         return render_template('user/confirm.html')
 
 
+logger = logging.getLogger(__name__)
+
 def register():
     err_msg = ''
 
-    if request.method.__eq__('POST'):
-        password = request.form['password']
-        confirm = request.form['confirm']
-        if password.__eq__(confirm):
-            avatar = ''
-            if request.files:
-                res = cloudinary.uploader.upload(request.files['avatar'])
-                avatar = res['secure_url']
+    if request.method == 'POST':
+        password = request.form.get('password', '')
+        confirm = request.form.get('confirm', '')
+        username = request.form.get('username', '')
+
+        if password == confirm:
             try:
-
-                utils.register(username=request.form['username'],
-                               password=password, avatar=avatar)
-                print('thành cong')
-
-                return redirect('/login')
-            except:
+                register_user(username=username, password=password)
+                logger.info(f"User {username} registered successfully.")
+                return redirect(url_for('login'))
+            except Exception as e:
+                logger.error(f"Register error: {e}")
                 err_msg = 'Hệ thống đang có lỗi! Vui lòng quay lại sau!'
         else:
             err_msg = 'Mật khẩu KHÔNG khớp!'
+
     return render_template('home/register.html', err_msg=err_msg)
 
 
@@ -194,12 +196,11 @@ def login():
 
         user = utils.auth_user(username=username, password=password)
         if user:
-            # ghi nhận user đã đăng nhập ; current_user toàn cục
             login_user(user=user)
-            # if "next" in request.args:
-            #     return redirect(request.args["next"])
-            return redirect(url_for('index'))
-
+            if user.user_role == UserRoleEnum.USER:
+                return redirect(url_for('index'))
+            else:
+                return redirect(url_for('index_employee'))
         else:
             err_mgs = "Lỗi sai username hoặc password!!"
     return render_template('home/login.html', err_mgs=err_mgs)
