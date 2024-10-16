@@ -10,26 +10,26 @@ from io import BytesIO
 from reportlab.pdfgen import canvas
 import stripe
 
+from ManageFlightApp.decorator import role_required
+from ManageFlightApp.models import UserRoleEnum
+
 
 def login_required(f):
     @wraps(f)
     def check(*args, **kwargs):
+        print(f"User authenticated: {current_user.is_authenticated}")
+        print(f"Current user: {current_user}")
         if not current_user.is_authenticated:
             return redirect(url_for("login", next=request.url))
         return f(*args, **kwargs)
-
     return check
-
-@login.user_loader
-def user_loader(user_id):
-    return utils.get_user_by_id(user_id=user_id)
 
 
 @login_required
 def index_employee():
     return render_template("employee/index.html")
 
-
+@login_required
 def submit_airplane():
     messg = ""
     if request.method == "POST":
@@ -60,7 +60,7 @@ def submit_airplane():
 
 
 
-
+@login_required
 def create_schedule():
     err_msg = ""
     if request.method == "POST":
@@ -88,18 +88,18 @@ def create_schedule():
                            airport=utils.get_all_airport_names())
 
 
+@login_required
 def employee_buy_ticket():
-
     flights = UtilsEmployee.get_list_flight()
     return render_template("employee/BuyTicket.html", flights=flights)
 
-
+@login_required
 def list_buy_ticket():
     list_book_ticket = UtilsEmployee.customer_booked_ticket()
 
     return render_template("employee/ListBookTicket.html", list_book_ticket=list_book_ticket)
 
-
+@login_required
 def load_detail_flight():
 
     # import pdb
@@ -111,6 +111,7 @@ def load_detail_flight():
 
 messg = ""
 
+@login_required
 @app.context_processor
 def common_reponse():
     return {
@@ -118,7 +119,7 @@ def common_reponse():
         'messg': messg
     }
 
-
+@login_required
 def flight_detail():
     flight_id = request.args.get("flight_id")
     list_flight = UtilsEmployee.get_detail_flight(flight_id=flight_id)
@@ -127,7 +128,7 @@ def flight_detail():
     return render_template("employee/flight-detail.html", flight_detail=flight_detail,
                            stops=UtilsEmployee.get_stops())
 
-
+@login_required
 def user_information():
     flight_id = request.args.get("f")
     list_flight = UtilsEmployee.get_detail_flight(flight_id=int(flight_id))
@@ -152,7 +153,7 @@ def user_information():
 
     return render_template("employee/UserInformation.html")
 
-
+@login_required
 def enter_info():
 
     if request.method == "POST":
@@ -180,6 +181,7 @@ def enter_info():
 
 user_data = []
 
+@login_required
 def payment():
 
     if request.method == "POST":
@@ -215,12 +217,12 @@ def payment():
             return render_template("employee/payment.html",  messg= messg)
 
 
-
+@login_required
 def export_ticket():
     pdf_file = generate_pdf_file()
     return send_file(pdf_file, as_attachment=True, download_name='Ticket.pdf')
 
-
+@login_required
 def generate_pdf_file():
     buffer = BytesIO()
     p = canvas.Canvas(buffer)

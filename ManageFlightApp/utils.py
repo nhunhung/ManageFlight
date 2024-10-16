@@ -32,6 +32,12 @@ def flight_states():
 def get_user_by_id(user_id):
     return Customer.query.get(int(user_id))
 
+def get_employee_by_id(user_id):
+    user = db.session.query(Employee).filter_by(id=user_id).first()
+    print(f"User fetched from DB: {user}")
+    return user
+
+
 
 def revenue_states():
     return (db.session.query(Route.name, extract('month', Receipt.created_date), func.sum(Receipt.unit_price))
@@ -65,27 +71,28 @@ def register_user(username, password):
 
 
 def auth_user(username, password):
-    # Mã hóa mật khẩu bằng MD5
     hashed_password = str(hashlib.md5(password.strip().encode('utf-8')).hexdigest())
 
-    # Tìm kiếm trong bảng Customer
     customer = Customer.query.filter(
         Customer.username == username.strip(),
         Customer.password == hashed_password
     ).first()
 
-    # Nếu tìm thấy khách hàng, trả về
     if customer:
+        print(f"Đã tìm thấy Customer: {customer.username}, ID: {customer.id}")
         return customer
 
-    # Nếu không tìm thấy, tìm kiếm trong bảng Employee
     employee = Employee.query.filter(
         Employee.username == username.strip(),
         Employee.password == hashed_password
     ).first()
 
-    # Trả về nhân viên nếu tìm thấy
-    return employee
+    if employee:
+        print(f"Đã tìm thấy Employee: {employee.username}, ID: {employee.id}")
+        return employee
+
+    print("Không tìm thấy người dùng nào.")
+    return None
 
 
 

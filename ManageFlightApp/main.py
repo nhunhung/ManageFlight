@@ -121,6 +121,9 @@ def send_ticket():
         return render_template('user/ticket.html', session=session, success_message=f"Failed to send email. Error: {str(e)}")
 
 
+@app.route("/unauthorized")
+def unauthorized():
+    return render_template("user/404.html")
 
 if __name__ == '__main__':
     from ManageFlightApp.admin import *

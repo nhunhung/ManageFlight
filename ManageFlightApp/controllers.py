@@ -25,7 +25,19 @@ def login_required(f):
 
 @login.user_loader
 def user_loader(user_id):
-    return utils.get_user_by_id(user_id=user_id)
+    # Kiểm tra xem user_id có tồn tại trong bảng Employee hay không
+    employee = utils.get_employee_by_id(user_id=user_id)
+    if employee:
+        return employee  # Trả về Employee nếu tìm thấy
+
+    # Nếu không tìm thấy Employee, kiểm tra trong bảng Customer
+    customer = utils.get_user_by_id(user_id=user_id)
+    if customer:
+        return customer  # Trả về Customer nếu tìm thấy
+
+    return None  # Trả về None nếu không tìm thấy cả hai
+
+
 
 
 def index():
