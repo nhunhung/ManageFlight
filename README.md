@@ -90,7 +90,3 @@ The system aims to optimize the booking process, improve data management, and pr
 - Optimized for performance and usability  
 
 ---
-
-## 📬 Contact
-- Author: *Your Name*  
-- Email: *your-email@example.com*
